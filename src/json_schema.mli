@@ -23,7 +23,12 @@ open Json_repr
 (** {2 Abstract representation of schemas} *) (********************************)
 
 (** A JSON schema root. *)
-type schema
+type schema =
+  { root : element ;
+    source : Uri.t (* whose fragment should be empty *) ;
+    definitions : (path * element) list ;
+    ids : (string * element) list ;
+    world : schema list }
 
 (** A node in the schema, embeds all type-agnostic specs. *)
 and element =
