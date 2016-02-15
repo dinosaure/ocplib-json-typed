@@ -37,7 +37,7 @@ let () = register_test "recursion" @@ fun () ->
     with err ->
       let print_unknown ppf = function
         | Ezjsonm.Parse_error (_, err) ->
-          Format.fprintf ppf "%s" err
+            Format.fprintf ppf "%s" err
         | exn -> raise exn in
       Format.eprintf "%a@." (print_error ~print_unknown) err ;
       main () in
@@ -70,7 +70,7 @@ let () = register_test "simple" @@ fun () ->
     with err ->
       let print_unknown ppf = function
         | Ezjsonm.Parse_error (_, err) ->
-          Format.fprintf ppf "%s" err
+            Format.fprintf ppf "%s" err
         | exn -> raise exn in
       Format.eprintf "%a@." (print_error ~print_unknown) err ;
       main () in
@@ -80,11 +80,11 @@ let () =
   try
     match Sys.argv with
     | [| _ ; "all" |] ->
-      List.iter (fun (n, f) ->
-          Format.printf "Running %s@." n ; f ())
-        (all_tests ())
+        List.iter (fun (n, f) ->
+            Format.printf "Running %s@." n ; f ())
+          (all_tests ())
     | [| _ ; n |] ->
-      List.assoc n (all_tests ()) ()
+        List.assoc n (all_tests ()) ()
     | _ -> raise Not_found
   with Not_found ->
     Format.eprintf "@[<v 2>Usage:@,%s all" Sys.argv.(0) ;
